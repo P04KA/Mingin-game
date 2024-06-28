@@ -1,0 +1,251 @@
+<html>
+
+<head>
+    <base href="PArDMmjkGAtQGR2bd.html">
+    <title>CryptoClicker: Улучшения майнинг фермы</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #4db6ac;
+        }
+
+        .upgrade-area {
+            background-color: #0f3460;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .upgrade-button {
+            background-color: #e94560;
+            color: #fff;
+            border: none;
+            padding: 15px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            width: 100%;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .upgrade-button:hover {
+            background-color: #d63447;
+            transform: translateY(-2px);
+        }
+
+        .upgrade-button:active {
+            transform: translateY(1px);
+        }
+
+        .upgrade-info {
+            background-color: #16213e;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .upgrade-progress {
+            background-color: #2a3a5a;
+            height: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #4db6ac;
+            width: 0%;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .stats {
+            background-color: #16213e;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .back-button {
+            background-color: #4db6ac;
+            color: #1a1a2e;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #45a29e;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Улучшения майнинг фермы</h1>
+        <div class="upgrade-area">
+            <div class="upgrade-info">
+                <h3>GPU (Графический процессор)</h3>
+                <p>GPU отлично подходит для майнинга многих криптовалют. Каждый GPU увеличивает скорость майнинга.</p>
+                <div class="upgrade-progress">
+                    <div class="progress-bar" style="width: 40%;"></div>
+                </div>
+                <p>Уровень: 4 / 10</p>
+            </div>
+            <button class="upgrade-button" id="gpu-upgrade">
+                <span>Улучшить GPU</span>
+                <span>Стоимость: 23 CC</span>
+            </button>
+        </div>
+        <div class="upgrade-area">
+            <div class="upgrade-info">
+                <h3>ASIC (Специализированная интегральная схема)</h3>
+                <p>ASIC - это специализированное оборудование для майнинга, обеспечивающее высокую производительность.
+                </p>
+                <div class="upgrade-progress">
+                    <div class="progress-bar" style="width: 20%;"></div>
+                </div>
+                <p>Уровень: 2 / 10</p>
+            </div>
+            <button class="upgrade-button" id="asic-upgrade">
+                <span>Купить ASIC</span>
+                <span>Стоимость: 150 CC</span>
+            </button>
+        </div>
+        <div class="upgrade-area">
+            <div class="upgrade-info">
+                <h3>Расширение фермы</h3>
+                <p>Увеличьте пространство вашей фермы, чтобы разместить больше оборудования и повысить общую
+                    производительность.</p>
+                <div class="upgrade-progress">
+                    <div class="progress-bar" style="width: 10%;"></div>
+                </div>
+                <p>Уровень: 1 / 10</p>
+            </div>
+            <button class="upgrade-button" id="farm-upgrade">
+                <span>Расширить ферму</span>
+                <span>Стоимость: 1000 CC</span>
+            </button>
+        </div>
+        <div class="upgrade-area">
+            <div class="upgrade-info">
+                <h3>Система охлаждения</h3>
+                <p>Улучшенная система охлаждения позволяет вашему оборудованию работать эффективнее и дольше.</p>
+                <div class="upgrade-progress">
+                    <div class="progress-bar" style="width: 0%;"></div>
+                </div>
+                <p>Уровень: 0 / 10</p>
+            </div>
+            <button class="upgrade-button" id="cooling-upgrade">
+                <span>Улучшить охлаждение</span>
+                <span>Стоимость: 5000 CC</span>
+            </button>
+        </div>
+        <div class="stats">
+            <h2>Статистика фермы</h2>
+            <p>Текущая скорость майнинга: <span id="current-cps">12.5</span> CC/сек</p>
+            <p>Общий уровень фермы: <span id="farm-level">7</span></p>
+            <p>Всего инвестировано: <span id="total-invested">1573</span> CC</p>
+        </div>
+        <button class="back-button" onclick="window.location.href='C:/Users/merkl/Desktop/Mining/main.html';">Вернуться
+            к
+            майнингу</button>
+    </div>
+
+    <script>
+        let cryptoAmount = parseFloat(localStorage.getItem('cryptoAmount')) || 0;
+        let cps = parseFloat(localStorage.getItem('cps')) || 1;
+        let farmLevel = parseInt(localStorage.getItem('farmLevel')) || 0;
+        let totalInvested = parseInt(localStorage.getItem('totalInvested')) || 0;
+        let totalMined = parseInt(localStorage.getItem('totalMined')) || 0;
+
+        const upgradeData = {
+            gpu: { cost: 35, cpsIncrease: 1, owned: parseInt(localStorage.getItem('gpuOwned')) || 5 },
+            asic: { cost: 150, cpsIncrease: 10, owned: parseInt(localStorage.getItem('asicOwned')) || 2 },
+            farm: { cost: 1000, cpsIncrease: 100, owned: parseInt(localStorage.getItem('farmOwned')) || 1 },
+            cooling: { cost: 5000, cpsIncrease: 500, owned: parseInt(localStorage.getItem('coolingOwned')) || 0 }
+        };
+
+        function updateDisplay() {
+            document.getElementById('current-cps').textContent = cps.toFixed(1);
+            document.getElementById('farm-level').textContent = farmLevel;
+            document.getElementById('total-invested').textContent = totalInvested;
+        }
+
+        function buyUpgrade(upgradeType) {
+            const upgrade = upgradeData[upgradeType];
+            if (cryptoAmount >= upgrade.cost) {
+                cryptoAmount -= upgrade.cost;
+                cps += upgrade.cpsIncrease;
+                upgrade.owned++;
+                totalInvested += upgrade.cost;
+                upgrade.cost = Math.ceil(upgrade.cost * 1.5);
+                farmLevel = Math.floor(1 + upgradeData.gpu.owned / 2 + upgradeData.asic.owned + upgradeData.farm.owned * 2 + upgradeData.cooling.owned * 3);
+
+                // Update button text and progress bar
+                const button = document.getElementById(`${upgradeType}-upgrade`);
+                button.querySelector('span:last-child').textContent = `Стоимость: ${upgrade.cost} CC`;
+
+                const progressBar = button.previousElementSibling.querySelector('.progress-bar');
+                progressBar.style.width = `${upgrade.owned * 10}%`;
+
+                const levelText = button.previousElementSibling.querySelector('p:last-child');
+                levelText.textContent = `Уровень: ${upgrade.owned} / 10`;
+
+                updateDisplay();
+
+                // Save the updated values to localStorage
+                localStorage.setItem('cryptoAmount', cryptoAmount);
+                localStorage.setItem('cps', cps);
+                localStorage.setItem('farmLevel', farmLevel);
+                localStorage.setItem('totalInvested', totalInvested);
+                localStorage.setItem('gpuOwned', upgradeData.gpu.owned);
+                localStorage.setItem('asicOwned', upgradeData.asic.owned);
+                localStorage.setItem('farmOwned', upgradeData.farm.owned);
+                localStorage.setItem('coolingOwned', upgradeData.cooling.owned);
+            } else {
+                alert('Недостаточно CryptoCoins для покупки этого улучшения!');
+            }
+        }
+
+        document.getElementById('gpu-upgrade').addEventListener('click', () => buyUpgrade('gpu'));
+        document.getElementById('asic-upgrade').addEventListener('click', () => buyUpgrade('asic'));
+        document.getElementById('farm-upgrade').addEventListener('click', () => buyUpgrade('farm'));
+        document.getElementById('cooling-upgrade').addEventListener('click', () => buyUpgrade('cooling'));
+
+        updateDisplay();
+    </script>
+</body>
+
+</html>

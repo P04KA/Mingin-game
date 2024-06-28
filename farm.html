@@ -1,0 +1,202 @@
+<html>
+
+<head>
+    <base href="https://websim.ai/c/crypto_clicker/delve">
+    <title>CryptoClicker: Погружение в криптомир</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #0a0a1e;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #4db6ac;
+        }
+
+        .delve-area {
+            background-color: #16213e;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .delve-button {
+            background-color: #4db6ac;
+            color: #0a0a1e;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .delve-button:hover {
+            background-color: #45a29e;
+            transform: scale(1.05);
+        }
+
+        .delve-button:active {
+            transform: scale(0.95);
+        }
+
+        #delve-result {
+            font-size: 18px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .crypto-info {
+            background-color: #1f2b4e;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .back-button {
+            background-color: #e94560;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .back-button:hover {
+            background-color: #d63447;
+        }
+
+        #crypto-network {
+            width: 100%;
+            height: 300px;
+            background-color: #16213e;
+            border-radius: 10px;
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .node {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #4db6ac;
+            border-radius: 50%;
+        }
+
+        .connection {
+            position: absolute;
+            height: 1px;
+            background-color: #4db6ac;
+            opacity: 0.5;
+            transform-origin: left center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Погружение в криптомир</h1>
+        <div class="delve-area">
+            <h2>Исследуйте глубины блокчейна</h2>
+            <button class="delve-button" id="delve-button">Погрузиться глубже</button>
+            <div id="delve-result"></div>
+        </div>
+        <div class="crypto-info">
+            <h2>Криптовалютная сеть</h2>
+            <p>Наблюдайте за живой визуализацией криптовалютной сети. Каждая точка представляет узел, а линии -
+                транзакции между ними.</p>
+            <div id="crypto-network"></div>
+        </div>
+        <button class="back-button" onclick="window.location.href='C:/Users/merkl/Desktop/Mining/main.html'">Вернуться к
+            майнингу</button>
+    </div>
+
+    <script>
+        const delveResults = [
+            "Вы обнаружили скрытый блок с высокой наградой!",
+            "Вы наткнулись на след крупной транзакции.",
+            "Вы расшифровали часть кода неизвестного альткоина.",
+            "Вы нашли данные о новом способе оптимизации майнинга.",
+            "Вы случайно подключились к закрытому каналу обмена информацией между крупными майнерами.",
+            "Вы обнаружили следы неизвестной атаки 51% на небольшую криптовалюту.",
+            "Вы наткнулись на архив старых блоков с неиспользованными биткоинами!",
+            "Вы расшифровали сообщение, спрятанное в транзакции много лет назад.",
+            "Вы обнаружили уязвимость в популярном смарт-контракте!",
+            "Вы нашли данные о неизвестном форке биткоина, который так и не был запущен."
+        ];
+
+        document.getElementById('delve-button').addEventListener('click', () => {
+            const result = delveResults[Math.floor(Math.random() * delveResults.length)];
+            document.getElementById('delve-result').textContent = result;
+        });
+
+        // Crypto network visualization
+        const network = document.getElementById('crypto-network');
+        const nodeCount = 50;
+        const nodes = [];
+
+        function createNode() {
+            const node = document.createElement('div');
+            node.className = 'node';
+            node.style.left = `${Math.random() * 100}%`;
+            node.style.top = `${Math.random() * 100}%`;
+            network.appendChild(node);
+            return node;
+        }
+
+        function createConnection(node1, node2) {
+            const connection = document.createElement('div');
+            connection.className = 'connection';
+            const rect1 = node1.getBoundingClientRect();
+            const rect2 = node2.getBoundingClientRect();
+            const length = Math.sqrt(Math.pow(rect2.left - rect1.left, 2) + Math.pow(rect2.top - rect1.top, 2));
+            const angle = Math.atan2(rect2.top - rect1.top, rect2.left - rect1.left);
+
+            connection.style.width = `${length}px`;
+            connection.style.left = `${rect1.left - network.offsetLeft}px`;
+            connection.style.top = `${rect1.top - network.offsetTop + 5}px`;
+            connection.style.transform = `rotate(${angle}rad)`;
+
+            network.appendChild(connection);
+            setTimeout(() => connection.remove(), 2000);
+        }
+
+        for (let i = 0; i < nodeCount; i++) {
+            nodes.push(createNode());
+        }
+
+        setInterval(() => {
+            const node1 = nodes[Math.floor(Math.random() * nodes.length)];
+            const node2 = nodes[Math.floor(Math.random() * nodes.length)];
+            if (node1 !== node2) {
+                createConnection(node1, node2);
+            }
+        }, 200);
+    </script>
+</body>
+
+</html>

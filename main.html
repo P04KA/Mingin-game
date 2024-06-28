@@ -1,0 +1,236 @@
+<html>
+
+<head>
+    <base href="https://websim.ai/c/crypto_clicker">
+    <title>CryptoClicker: Майнинг-империя</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #4db6ac;
+        }
+
+        h2 a {
+            color: #4db6ac;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 24px;
+
+        }
+
+        .game-area {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .mining-area,
+        .upgrade-area,
+        .market-area {
+            flex: 1;
+            padding: 20px;
+            background-color: #16213e;
+            border-radius: 10px;
+            margin: 0 10px;
+        }
+
+        #mine-button {
+            background-color: #4db6ac;
+            color: #1a1a2e;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            display: block;
+            margin: 20px auto;
+        }
+
+        #mine-button:hover {
+            background-color: #45a29e;
+            transform: scale(1.05);
+        }
+
+        #mine-button:active {
+            transform: scale(0.95);
+        }
+
+        #crypto-amount,
+        #cps {
+            font-size: 24px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .upgrade-button,
+        .market-button {
+            background-color: #e94560;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            text-align: left;
+        }
+
+        .upgrade-button:hover,
+        .market-button:hover {
+            background-color: #d63447;
+        }
+
+        .stats {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #16213e;
+            border-radius: 10px;
+        }
+
+        #news-ticker {
+            background-color: #0f3460;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .achievement {
+            background-color: #4db6ac;
+            color: #1a1a2e;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        #mining-animation {
+            width: 100px;
+            height: 100px;
+            margin: 20px auto;
+            border: 5px solid #4db6ac;
+            border-radius: 50%;
+            border-top: 5px solid #1a1a2e;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>CryptoClicker: Майнинг-империя</h1>
+        <div class="game-area">
+            <div class="mining-area">
+                <h2>Майнинг</h2>
+                <div id="mining-animation"></div>
+                <button id="mine-button">Майнить криптовалюту</button>
+                <div id="crypto-amount">0 CryptoCoins</div>
+                <div id="cps">1 CryptoCoins в секунду</div>
+            </div>
+            <div class="upgrade-area">
+                <h2><a href="C:/Users/merkl/Desktop/Mining/upgrade.html">Улучшения</a></h2>
+                <button class="upgrade-button" id="gpu-upgrade">Улучшить GPU (Стоимость: 35 CC)</button>
+                <button class="upgrade-button" id="asic-upgrade">Купить ASIC (Стоимость: 150 CC)</button>
+                <button class="upgrade-button" id="farm-upgrade">Расширить ферму (Стоимость: 1000 CC)</button>
+                <button class="upgrade-button" id="cooling-upgrade">Улучшить охлаждение (Стоимость: 5000 CC)</button>
+            </div>
+            <div class="market-area">
+                <h2>Крипторынок</h2>
+                <button class="market-button" id="buy-btc">Купить BTC (Курс: 1 BTC = 1000 CC)</button>
+                <button class="market-button" id="buy-eth">Купить ETH (Курс: 1 ETH = 100 CC)</button>
+                <button class="market-button" id="sell-btc">Продать BTC (Курс: 1 BTC = 990 CC)</button>
+                <button class="market-button" id="sell-eth">Продать ETH (Курс: 1 ETH = 99 CC)</button>
+            </div>
+        </div>
+        <div class="stats">
+            <h2>Статистика</h2>
+            <p>Всего намайнено: <span id="total-mined">10596</span> CC</p>
+            <p>Уровень фермы: <span id="farm-level">8</span></p>
+            <p>Портфель: <span id="btc-amount">0</span> BTC, <span id="eth-amount">0</span> ETH</p>
+        </div>
+        <div id="news-ticker">
+            Илон Маск твитнул о Dogecoin. Курс взлетел на 20%!
+        </div>
+        <div id="achievement" class="achievement">
+            Достижение разблокировано: Криптоэнтузиаст!
+        </div>
+    </div>
+
+    <script>
+        // ...
+
+        let cryptoAmount = parseFloat(localStorage.getItem('cryptoAmount')) || 0;
+        let cps = parseFloat(localStorage.getItem('cps')) || 1;
+        let totalMined = parseFloat(localStorage.getItem('totalMined')) || 0;
+        let farmLevel = parseInt(localStorage.getItem('farmLevel')) || 0;
+        let btcAmount = parseFloat(localStorage.getItem('btcAmount')) || 0;
+        let ethAmount = parseFloat(localStorage.getItem('ethAmount')) || 0;
+
+        // ...
+
+        function updateDisplay() {
+            // ...
+
+            localStorage.setItem('cryptoAmount', cryptoAmount);
+            localStorage.setItem('cps', cps);
+            localStorage.setItem('totalMined', totalMined);
+            localStorage.setItem('farmLevel', farmLevel);
+            localStorage.setItem('btcAmount', btcAmount);
+            localStorage.setItem('ethAmount', ethAmount);
+        }
+
+        // ...
+
+        setInterval(() => {
+            // ...
+
+            localStorage.setItem('cryptoAmount', cryptoAmount);
+            localStorage.setItem('cps', cps);
+            localStorage.setItem('totalMined', totalMined);
+            localStorage.setItem('farmLevel', farmLevel);
+            localStorage.setItem('btcAmount', btcAmount);
+            localStorage.setItem('ethAmount', ethAmount);
+        }, 100);
+
+        // ...
+    </script>
+</body>
+
+</html>
